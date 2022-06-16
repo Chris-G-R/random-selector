@@ -1,3 +1,10 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Sun Jun 12 10:08:09 2022
+
+@author: cgayt
+"""
+
 import random as r
 
 from tkinter import *
@@ -10,8 +17,6 @@ def pick_random():
     
     #Set the output widget to select a random element from our newly created list variable
     text_var.set(r.choice(random_strings))
-    
-    #text_var.set('it works...')
 
 #Since every created text entry has an ID, we use the ID to find its location within the lists
 def get_widget_index(unique_id):
@@ -79,9 +84,11 @@ output_text.grid(row=0, column=0)
 execution_button = ttk.Button(root, text="Pick at random!", command=pick_random)
 execution_button.grid(row=1, column=0)
 
-#Creating the output frame of the app
-input_frame = ttk.Frame(root)
-input_frame.grid(row=2, column=0)
+#Input stuff
+input_frame = ttk.Frame(root, width=500)
+input_frame.grid(row=2, column=0, padx=5, pady=(2,5))
+
+root.columnconfigure(0, weight=1)
 
 #Creates a list containing a variable that the first entry uses as a variable to store info
 random_list = [StringVar()]
@@ -96,6 +103,8 @@ entry_list[0].grid(row=0, column=0)
 #Creates a widget that creates 2 widgets - another entry widget and a button that removes itself and the corresponding entry widget
 modify_widget_button_list = [ttk.Button(input_frame, text="+", command=add_widget)]
 modify_widget_button_list[0].grid(row=0, column=1)
+
+input_frame.columnconfigure(0, weight=1)
 
 #Main loop
 root.mainloop()
